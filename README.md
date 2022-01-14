@@ -15,4 +15,6 @@ docker compose run --rm composer create-project laravel/laravel .
 If access Forbidden:
 
 docker compose run --rm php /bin/sh
-and then - chown -R laravel:laravel /var/www/html
+
+and then - 
+chown -R laravel:laravel /var/www/html
