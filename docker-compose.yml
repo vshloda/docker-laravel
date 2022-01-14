@@ -61,7 +61,7 @@ services:
             - laravel
 
     composer:
-        image: composer:2
+        image: composer:latest
         container_name: composer
         volumes:
             - ./src:/var/www/html
