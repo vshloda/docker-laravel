@@ -17,4 +17,5 @@ If access Forbidden:
 docker compose run --rm php /bin/sh
 
 and then - 
+
 chown -R laravel:laravel /var/www/html
