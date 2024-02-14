@@ -46,8 +46,7 @@ services:
             - laravel
 
     mysql:
-        image: mysql:8.0.27
-        platform: linux/amd64
+        image: mysql/mysql-server:8.0.27
         container_name: mysql
         ports:
             - 3306:3306
