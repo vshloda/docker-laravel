@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
     laravel:
         name: laravel
@@ -21,19 +19,6 @@ services:
             - ./src:/var/www/html
         networks:
             - laravel
-
-#    apache:
-#        build:
-#            context: .
-#            dockerfile: apache.dockerfile
-#        container_name: apache
-#        ports:
-#            - 80:80
-#            - 443:443
-#        volumes:
-#            - ./src:/var/www/html
-#        networks:
-#            - virtual-fair
 
     php:
         build:
