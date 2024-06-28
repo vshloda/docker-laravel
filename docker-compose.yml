@@ -1,39 +1,31 @@
-networks:
-    laravel:
-        name: laravel
-
 services:
 
     nginx:
         build:
             context: .
-            dockerfile: nginx.dockerfile
+            dockerfile: ./docker/nginx.Dockerfile
         depends_on:
             - php
             - mysql
-        container_name: nginx
+        container_name: laravel_nginx
         ports:
             - 80:80
             - 443:443
         volumes:
             - ./src:/var/www/html
-        networks:
-            - laravel
 
     php:
         build:
             context: .
-            dockerfile: php.dockerfile
-        container_name: php
+            dockerfile: ./docker/php.Dockerfile
+        container_name: laravel_php
         volumes:
             - ./src:/var/www/html
-        networks:
-            - laravel
 
     mysql:
         image: mysql:8.0.27
         platform: linux/amd64
-        container_name: mysql
+        container_name: laravel_mysql
         ports:
             - 3306:3306
         volumes:
@@ -43,39 +35,31 @@ services:
             MYSQL_USER: laravel
             MYSQL_PASSWORD: secret
             MYSQL_ROOT_PASSWORD: secret
-        networks:
-            - laravel
 
     composer:
         image: composer:latest
-        container_name: composer
+        container_name: laravel_composer
         volumes:
             - ./src:/var/www/html
         working_dir: /var/www/html
-        networks:
-            - laravel
 
     artisan:
         build:
             context: .
-            dockerfile: php.dockerfile
-        container_name: artisan
+            dockerfile: ./docker/php.Dockerfile
+        container_name: laravel_artisan
         volumes:
             - ./src:/var/www/html
         working_dir: /var/www/html
         entrypoint: ['php', 'artisan']
-        networks:
-            - laravel
 
     npm:
         image: node:current-alpine
-        container_name: npm
+        container_name: laravel_npm
         volumes:
             - ./src:/var/www/html
         working_dir: /var/www/html
         entrypoint: ['npm']
-        networks:
-            - laravel
 
 
 
