@@ -37,11 +37,14 @@ services:
             MYSQL_ROOT_PASSWORD: secret
 
     composer:
-        image: composer:latest
+        build:
+            context: .
+            dockerfile: ./docker/php.Dockerfile
         container_name: laravel_composer
         volumes:
             - ./src:/var/www/html
         working_dir: /var/www/html
+        entrypoint: ['composer']
 
     artisan:
         build:
@@ -67,3 +70,4 @@ services:
 
 
 
+        
